@@ -1,4 +1,4 @@
-package somen440.openapi.swaggerui;
+package somen440.hossi.resources;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

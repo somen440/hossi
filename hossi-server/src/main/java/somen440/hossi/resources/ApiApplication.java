@@ -1,4 +1,4 @@
-package somen440.openapi.swaggerui;
+package somen440.hossi.resources;
 
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.info.Info;

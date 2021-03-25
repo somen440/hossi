@@ -1,14 +1,16 @@
-package somen440.openapi.swaggerui;
+package somen440.hossi.domain.model.fruit;
 
 public class Fruit {
 
+    public int id;
     public String name;
     public String description;
 
     public Fruit() {
     }
 
-    public Fruit(String name, String description) {
+    public Fruit(int id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
     }
