@@ -9,6 +9,7 @@ import somen440.hossi.usecases.fruits.list.FruitListUseCase;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class FruitListInteractor implements FruitListUseCase {
@@ -20,7 +21,7 @@ public class FruitListInteractor implements FruitListUseCase {
     public FruitListOutputData handle(FruitListInputData inputData) {
         final var fruits = fruitRepository.findAll().stream().map(
                 fruit -> new FruitData(fruit.id, fruit.name, fruit.description)
-        ).toList();
+        ).collect(Collectors.toList());
 
         return new FruitListOutputData(new HashSet<>(fruits));
     }
