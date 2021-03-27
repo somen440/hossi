@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -19,6 +19,25 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Build with Maven
+    - name: Test
       working-directory: hossi-server
       run: ./mvnw test
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Graalvm
+      id: setup-graalvm
+      uses: DeLaGuardo/setup-graalvm@4.0
+      with:
+        graalvm: '21.0.0.2'
+        java: 'java11'
+    - name: Install native-image component
+      run: |
+        ${{ matrix.gu-binary }} install native-image
+    - name: build
+      working-directory: hossi-server
+      run: ./mvnw package -Pnative
