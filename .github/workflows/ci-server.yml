@@ -53,6 +53,7 @@ jobs:
     if: always()
     needs: [test, check_style, build]
 
+    steps:
     - name: Success CI
       if: ${{ success() }}
       uses: tokorom/action-slack-incoming-webhook@master
