@@ -3,18 +3,18 @@ package somen440.hossi.resources;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
+import somen440.hossi.resources.schemas.fruits.Fruit;
+import somen440.hossi.resources.schemas.fruits.FruitAddRequest;
+import somen440.hossi.resources.schemas.fruits.FruitAddResponse;
+import somen440.hossi.resources.schemas.fruits.FruitListResponse;
 import somen440.hossi.usecases.fruits.add.FruitAddInputData;
-import somen440.hossi.usecases.fruits.add.FruitAddUseCase;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
-import somen440.hossi.usecases.fruits.delete.FruitDeleteUseCase;
 import somen440.hossi.usecases.fruits.list.FruitListInputData;
-import somen440.hossi.usecases.fruits.list.FruitListUseCase;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Path("/fruits")
@@ -27,32 +27,6 @@ public class FruitResource {
     @Inject
     FruitUseCaseDI di;
 
-    public static class Fruit {
-
-        public int id;
-        public String name;
-        public String description;
-
-        public Fruit() {}
-
-        public Fruit(int id, String name, String description) {
-            this.id = id;
-            this.name = name;
-            this.description = description;
-        }
-    }
-
-    public static class FruitListResponse {
-
-        public Set<Fruit> fruits;
-
-        public FruitListResponse() {}
-
-        public FruitListResponse(Set<Fruit> fruits) {
-            this.fruits = fruits;
-        }
-    }
-
     @GET
     public FruitListResponse list() {
         final var input = new FruitListInputData();
@@ -63,30 +37,6 @@ public class FruitResource {
         LOG.info(String.format("list size=%d", fruits.size()));
 
         return new FruitListResponse(new HashSet<>(fruits));
-    }
-
-    public static class FruitAddRequest {
-
-        public String name;
-        public String description;
-
-        public FruitAddRequest() {}
-
-        public FruitAddRequest(String name, String description) {
-            this.name = name;
-            this.description = description;
-        }
-    }
-
-    public static class FruitAddResponse {
-
-        public Fruit fruit;
-
-        public FruitAddResponse() {}
-
-        public FruitAddResponse(Fruit fruit) {
-            this.fruit = fruit;
-        }
     }
 
     @POST
