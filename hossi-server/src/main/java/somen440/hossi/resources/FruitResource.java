@@ -2,6 +2,7 @@ package somen440.hossi.resources;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
 import somen440.hossi.usecases.fruits.add.FruitAddInputData;
 import somen440.hossi.usecases.fruits.add.FruitAddUseCase;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
@@ -24,13 +25,7 @@ public class FruitResource {
     private static final Logger LOG = Logger.getLogger(FruitResource.class);
 
     @Inject
-    FruitAddUseCase fruitAddUseCase;
-
-    @Inject
-    FruitListUseCase fruitListUseCase;
-
-    @Inject
-    FruitDeleteUseCase fruitDeleteUseCase;
+    FruitUseCaseDI di;
 
     public static class Fruit {
 
@@ -61,7 +56,7 @@ public class FruitResource {
     @GET
     public FruitListResponse list() {
         final var input = new FruitListInputData();
-        final var fruits = this.fruitListUseCase.handle(input).fruits.stream().map(
+        final var fruits = di.listUseCase().handle(input).fruits.stream().map(
                 fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description)
         ).collect(Collectors.toList());
 
@@ -97,7 +92,7 @@ public class FruitResource {
     @POST
     public FruitAddResponse add(FruitAddRequest req) {
         final var input = new FruitAddInputData(req.name, req.description);
-        final var output = this.fruitAddUseCase.handle(input);
+        final var output = di.addUseCase().handle(input);
 
         LOG.info(String.format("add id=%d", output.fruit.id));
 
@@ -107,7 +102,7 @@ public class FruitResource {
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam int id) {
-        this.fruitDeleteUseCase.handle(new FruitDeleteInputData(id));
+        di.deleteUseCase().handle(new FruitDeleteInputData(id));
 
         LOG.info(String.format("delete id=%d", id));
     }

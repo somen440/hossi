@@ -16,12 +16,17 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class FruitListInteractor implements FruitListUseCase {
 
-    @Inject
-    FruitRepositoryDI fruitRepositoryDI;
+    FruitRepository fruitRepository;
+
+    public FruitListInteractor() {}
+
+    public FruitListInteractor(FruitRepository fruitRepository) {
+        this.fruitRepository = fruitRepository;
+    }
 
     @Override
     public FruitListOutputData handle(FruitListInputData inputData) {
-        final var fruits = fruitRepositoryDI.repository().findAll().stream().map(
+        final var fruits = fruitRepository.findAll().stream().map(
                 fruit -> new FruitData(fruit.id, fruit.name, fruit.description)
         ).collect(Collectors.toList());
 

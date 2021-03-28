@@ -1,6 +1,7 @@
 package somen440.hossi.domain.application.fruit;
 
 import somen440.hossi.di.repository.fruits.FruitRepositoryDI;
+import somen440.hossi.domain.model.fruit.FruitRepository;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteOutputData;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteUseCase;
@@ -11,12 +12,17 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class FruitDeleteInteractor implements FruitDeleteUseCase {
 
-    @Inject
-    FruitRepositoryDI fruitRepositoryDI;
+    FruitRepository fruitRepository;
+
+    public FruitDeleteInteractor() {}
+
+    public FruitDeleteInteractor(FruitRepository fruitRepository) {
+        this.fruitRepository = fruitRepository;
+    }
 
     @Override
     public FruitDeleteOutputData handle(FruitDeleteInputData inputData) {
-        fruitRepositoryDI.repository().remove(inputData.id);
+        fruitRepository.remove(inputData.id);
 
         return new FruitDeleteOutputData();
     }
