@@ -48,3 +48,44 @@ jobs:
     - name: build
       working-directory: hossi-server
       run: ./mvnw package -Pnative
+
+  notice:
+    if: always()
+    needs: [test, check_style, build]
+
+    - name: Success CI
+      if: ${{ success() }}
+      uses: tokorom/action-slack-incoming-webhook@master
+      env:
+        INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      with:
+        text: ${{ github.workflow }} 成功したよ:eyes:
+        attachments: |
+          [
+            {
+              "color": "good",
+              "author_name": "${{ github.actor }}",
+              "author_icon": "${{ github.event.sender.avatar_url }}",
+              "title": "PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }} success",
+              "title_link": "${{ github.event.pull_request._links.html.href }}",
+              "footer": "timestamp: ${{ github.event.pull_request.updated_at }}"
+            }
+          ]
+    - name: Failure CI
+      if: ${{ failure() }}
+      uses: tokorom/action-slack-incoming-webhook@master
+      env:
+        INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      with:
+        text: <!channel> ${{ github.workflow }} 失敗したよ:eyes:
+        attachments: |
+          [
+            {
+              "color": "danger",
+              "author_name": "${{ github.actor }}",
+              "author_icon": "${{ github.event.sender.avatar_url }}",
+              "title": "PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }} failure",
+              "title_link": "${{ github.event.pull_request._links.html.href }}",
+              "footer": "timestamp: ${{ github.event.pull_request.updated_at }}"
+            }
+          ]
