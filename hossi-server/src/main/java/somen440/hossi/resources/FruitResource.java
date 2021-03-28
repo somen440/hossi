@@ -12,10 +12,7 @@ import somen440.hossi.usecases.fruits.list.FruitListUseCase;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Collections;
-import java.util.Collections.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 

@@ -3,7 +3,7 @@ package somen440.hossi.resources;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import somen440.hossi.di.RepositoryInjection;
+import somen440.hossi.di.repository.RepositoryInjection;
 
 import javax.ws.rs.core.MediaType;
 
