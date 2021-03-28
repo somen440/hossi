@@ -60,7 +60,7 @@ jobs:
       env:
         INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
-        text: ${{ github.workflow }} 成功したよ:eyes:
+        text: "${{ github.workflow }} 成功したよ:eyes:"
         attachments: |
           [
             {
@@ -78,7 +78,7 @@ jobs:
       env:
         INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       with:
-        text: <!channel> ${{ github.workflow }} 失敗したよ:eyes:
+        text: "<!channel> ${{ github.workflow }} 失敗したよ:eyes:"
         attachments: |
           [
             {
