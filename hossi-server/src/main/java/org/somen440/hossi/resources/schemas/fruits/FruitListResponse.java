@@ -4,11 +4,11 @@ import java.util.Set;
 
 public class FruitListResponse {
 
-    public Set<Fruit> fruits;
+  public Set<Fruit> fruits;
 
-    public FruitListResponse() {}
+  public FruitListResponse() {}
 
-    public FruitListResponse(Set<Fruit> fruits) {
-        this.fruits = fruits;
-    }
+  public FruitListResponse(Set<Fruit> fruits) {
+    this.fruits = fruits;
+  }
 }

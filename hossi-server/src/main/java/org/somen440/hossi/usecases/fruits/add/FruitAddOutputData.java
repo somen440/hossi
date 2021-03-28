@@ -5,12 +5,11 @@ import org.somen440.hossi.usecases.OutputData;
 
 public class FruitAddOutputData implements OutputData {
 
-    public FruitData fruit;
+  public FruitData fruit;
 
-    public FruitAddOutputData() {
-    }
+  public FruitAddOutputData() {}
 
-    public FruitAddOutputData(FruitData fruit) {
-        this.fruit = fruit;
-    }
+  public FruitAddOutputData(FruitData fruit) {
+    this.fruit = fruit;
+  }
 }

@@ -15,71 +15,86 @@ import static org.hamcrest.Matchers.containsString;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FruitResourceTest {
 
-    @BeforeAll
-    public static void initAll() {
-        RepositoryInjection.useInmemory();
-    }
+  @BeforeAll
+  public static void initAll() {
+    RepositoryInjection.useInmemory();
+  }
 
-    @Test
-    @Order(1)
-    public void testList() {
-        given()
-                .header("Content-Type", MediaType.APPLICATION_JSON)
-                .when().get("/fruits")
-                .then()
-                .statusCode(200)
-                .body("fruits.size()", is(2),
-                     "fruits.name", containsInAnyOrder("Apple", "Pineapple"),
-                     "fruits.description", containsInAnyOrder("Winter fruit", "Tropical fruit"));
-    }
+  @Test
+  @Order(1)
+  public void testList() {
+    given()
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .get("/fruits")
+        .then()
+        .statusCode(200)
+        .body(
+            "fruits.size()",
+            is(2),
+            "fruits.name",
+            containsInAnyOrder("Apple", "Pineapple"),
+            "fruits.description",
+            containsInAnyOrder("Winter fruit", "Tropical fruit"));
+  }
 
-    @Test
-    @Order(2)
-    public void testAdd() {
-        given()
-                .body("{\"name\":\"Pear\", \"description\":\"Winter fruit\"}")
-                .header("Content-Type", MediaType.APPLICATION_JSON)
-                .when()
-                .post("/fruits")
-                .then()
-                .statusCode(200)
-                .body("fruit.name", containsString("Pear"));
-    }
+  @Test
+  @Order(2)
+  public void testAdd() {
+    given()
+        .body("{\"name\":\"Pear\", \"description\":\"Winter fruit\"}")
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .post("/fruits")
+        .then()
+        .statusCode(200)
+        .body("fruit.name", containsString("Pear"));
+  }
 
-    @Test
-    @Order(3)
-    public void testAddedList() {
-        given()
-                .header("Content-Type", MediaType.APPLICATION_JSON)
-                .when().get("/fruits")
-                .then()
-                .statusCode(200)
-                .body("fruits.size()", is(3),
-                        "fruits.name", containsInAnyOrder("Apple", "Pineapple", "Pear"),
-                        "fruits.description", containsInAnyOrder("Winter fruit", "Tropical fruit", "Winter fruit"));
-    }
+  @Test
+  @Order(3)
+  public void testAddedList() {
+    given()
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .get("/fruits")
+        .then()
+        .statusCode(200)
+        .body(
+            "fruits.size()",
+            is(3),
+            "fruits.name",
+            containsInAnyOrder("Apple", "Pineapple", "Pear"),
+            "fruits.description",
+            containsInAnyOrder("Winter fruit", "Tropical fruit", "Winter fruit"));
+  }
 
-    @Test
-    @Order(4)
-    public void testDelete() {
-        given()
-                .header("Content-Type", MediaType.APPLICATION_JSON)
-                .when()
-                .delete("/fruits/3")
-                .then()
-                .statusCode(204);
-    }
+  @Test
+  @Order(4)
+  public void testDelete() {
+    given()
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .delete("/fruits/3")
+        .then()
+        .statusCode(204);
+  }
 
-    @Test
-    @Order(5)
-    public void testDeletedList() {
-        given()
-                .header("Content-Type", MediaType.APPLICATION_JSON)
-                .when().get("/fruits")
-                .then()
-                .statusCode(200)
-                .body("fruits.size()", is(2),
-                        "fruits.name", containsInAnyOrder("Apple", "Pineapple"),
-                        "fruits.description", containsInAnyOrder("Winter fruit", "Tropical fruit"));
-    }
+  @Test
+  @Order(5)
+  public void testDeletedList() {
+    given()
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .get("/fruits")
+        .then()
+        .statusCode(200)
+        .body(
+            "fruits.size()",
+            is(2),
+            "fruits.name",
+            containsInAnyOrder("Apple", "Pineapple"),
+            "fruits.description",
+            containsInAnyOrder("Winter fruit", "Tropical fruit"));
+  }
 }

@@ -13,18 +13,19 @@ import static org.hamcrest.CoreMatchers.is;
 @QuarkusTest
 public class FruitResourceMockTest {
 
-    @BeforeAll
-    public static void initAll() {
-        RepositoryInjection.useMock();
-    }
+  @BeforeAll
+  public static void initAll() {
+    RepositoryInjection.useMock();
+  }
 
-    @Test
-    public void testList() {
-        given()
-                .header("Content-Type", MediaType.APPLICATION_JSON)
-                .when().get("/fruits")
-                .then()
-                .statusCode(200)
-                .body("fruits.size()", is(0));
-    }
+  @Test
+  public void testList() {
+    given()
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .get("/fruits")
+        .then()
+        .statusCode(200)
+        .body("fruits.size()", is(0));
+  }
 }

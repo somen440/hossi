@@ -10,18 +10,18 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class FruitDeleteInteractor implements FruitDeleteUseCase {
 
-    FruitRepository fruitRepository;
+  FruitRepository fruitRepository;
 
-    public FruitDeleteInteractor() {}
+  public FruitDeleteInteractor() {}
 
-    public FruitDeleteInteractor(FruitRepository fruitRepository) {
-        this.fruitRepository = fruitRepository;
-    }
+  public FruitDeleteInteractor(FruitRepository fruitRepository) {
+    this.fruitRepository = fruitRepository;
+  }
 
-    @Override
-    public FruitDeleteOutputData handle(FruitDeleteInputData inputData) {
-        fruitRepository.remove(inputData.id);
+  @Override
+  public FruitDeleteOutputData handle(FruitDeleteInputData inputData) {
+    fruitRepository.remove(inputData.id);
 
-        return new FruitDeleteOutputData();
-    }
+    return new FruitDeleteOutputData();
+  }
 }

@@ -11,18 +11,18 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class FruitAddInteractor implements FruitAddUseCase {
 
-    FruitRepository fruitRepository;
+  FruitRepository fruitRepository;
 
-    public FruitAddInteractor() {}
+  public FruitAddInteractor() {}
 
-    public FruitAddInteractor(FruitRepository fruitRepository) {
-        this.fruitRepository = fruitRepository;
-    }
+  public FruitAddInteractor(FruitRepository fruitRepository) {
+    this.fruitRepository = fruitRepository;
+  }
 
-    @Override
-    public FruitAddOutputData handle(FruitAddInputData inputData) {
-        final var fruit = fruitRepository.save(inputData.name, inputData.description);
+  @Override
+  public FruitAddOutputData handle(FruitAddInputData inputData) {
+    final var fruit = fruitRepository.save(inputData.name, inputData.description);
 
-        return new FruitAddOutputData(new FruitData(fruit.id, fruit.name, fruit.description));
-    }
+    return new FruitAddOutputData(new FruitData(fruit.id, fruit.name, fruit.description));
+  }
 }

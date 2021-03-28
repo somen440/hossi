@@ -11,19 +11,17 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class FruitRepositoryDI {
 
-    @Inject
-    InMemoryFruitRepository inMemoryFruitRepository;
+  @Inject InMemoryFruitRepository inMemoryFruitRepository;
 
-    @Inject
-    EmptyFruitRepository emptyFruitRepository;
+  @Inject EmptyFruitRepository emptyFruitRepository;
 
-    public FruitRepository repository() {
-        switch (RepositoryInjection.currentType()) {
-            case INMEMORY:
-                return inMemoryFruitRepository;
-            case MOCK:
-                return emptyFruitRepository;
-        }
-        throw new RuntimeException("未登録のタイプ");
+  public FruitRepository repository() {
+    switch (RepositoryInjection.currentType()) {
+      case INMEMORY:
+        return inMemoryFruitRepository;
+      case MOCK:
+        return emptyFruitRepository;
     }
+    throw new RuntimeException("未登録のタイプ");
+  }
 }

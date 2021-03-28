@@ -1,4 +1,3 @@
 package org.somen440.hossi.usecases;
 
-public interface InputData<TOutputData extends OutputData> {
-}
+public interface InputData<TOutputData extends OutputData> {}

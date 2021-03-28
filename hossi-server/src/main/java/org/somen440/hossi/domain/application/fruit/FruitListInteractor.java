@@ -13,20 +13,21 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class FruitListInteractor implements FruitListUseCase {
 
-    FruitRepository fruitRepository;
+  FruitRepository fruitRepository;
 
-    public FruitListInteractor() {}
+  public FruitListInteractor() {}
 
-    public FruitListInteractor(FruitRepository fruitRepository) {
-        this.fruitRepository = fruitRepository;
-    }
+  public FruitListInteractor(FruitRepository fruitRepository) {
+    this.fruitRepository = fruitRepository;
+  }
 
-    @Override
-    public FruitListOutputData handle(FruitListInputData inputData) {
-        final var fruits = fruitRepository.findAll().stream().map(
-                fruit -> new FruitData(fruit.id, fruit.name, fruit.description)
-        ).collect(Collectors.toList());
+  @Override
+  public FruitListOutputData handle(FruitListInputData inputData) {
+    final var fruits =
+        fruitRepository.findAll().stream()
+            .map(fruit -> new FruitData(fruit.id, fruit.name, fruit.description))
+            .collect(Collectors.toList());
 
-        return new FruitListOutputData(new HashSet<>(fruits));
-    }
+    return new FruitListOutputData(new HashSet<>(fruits));
+  }
 }

@@ -22,38 +22,39 @@ import java.util.stream.Collectors;
 @Produces(MediaType.APPLICATION_JSON)
 public class FruitResource {
 
-    private static final Logger LOG = Logger.getLogger(FruitResource.class);
+  private static final Logger LOG = Logger.getLogger(FruitResource.class);
 
-    @Inject
-    FruitUseCaseDI di;
+  @Inject FruitUseCaseDI di;
 
-    @GET
-    public FruitListResponse list() {
-        final var input = new FruitListInputData();
-        final var fruits = di.listUseCase().handle(input).fruits.stream().map(
-                fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description)
-        ).collect(Collectors.toList());
+  @GET
+  public FruitListResponse list() {
+    final var input = new FruitListInputData();
+    final var fruits =
+        di.listUseCase().handle(input).fruits.stream()
+            .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
+            .collect(Collectors.toList());
 
-        LOG.info(String.format("list size=%d", fruits.size()));
+    LOG.info(String.format("list size=%d", fruits.size()));
 
-        return new FruitListResponse(new HashSet<>(fruits));
-    }
+    return new FruitListResponse(new HashSet<>(fruits));
+  }
 
-    @POST
-    public FruitAddResponse add(FruitAddRequest req) {
-        final var input = new FruitAddInputData(req.name, req.description);
-        final var output = di.addUseCase().handle(input);
+  @POST
+  public FruitAddResponse add(FruitAddRequest req) {
+    final var input = new FruitAddInputData(req.name, req.description);
+    final var output = di.addUseCase().handle(input);
 
-        LOG.info(String.format("add id=%d", output.fruit.id));
+    LOG.info(String.format("add id=%d", output.fruit.id));
 
-        return new FruitAddResponse(new Fruit(output.fruit.id, output.fruit.name, output.fruit.description));
-    }
+    return new FruitAddResponse(
+        new Fruit(output.fruit.id, output.fruit.name, output.fruit.description));
+  }
 
-    @DELETE
-    @Path("/{id}")
-    public void delete(@PathParam int id) {
-        di.deleteUseCase().handle(new FruitDeleteInputData(id));
+  @DELETE
+  @Path("/{id}")
+  public void delete(@PathParam int id) {
+    di.deleteUseCase().handle(new FruitDeleteInputData(id));
 
-        LOG.info(String.format("delete id=%d", id));
-    }
+    LOG.info(String.format("delete id=%d", id));
+  }
 }

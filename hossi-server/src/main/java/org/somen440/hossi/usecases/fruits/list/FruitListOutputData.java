@@ -7,12 +7,11 @@ import java.util.Set;
 
 public class FruitListOutputData implements OutputData {
 
-    public Set<FruitData> fruits;
+  public Set<FruitData> fruits;
 
-    public FruitListOutputData() {
-    }
+  public FruitListOutputData() {}
 
-    public FruitListOutputData(Set<FruitData> fruits) {
-        this.fruits = fruits;
-    }
+  public FruitListOutputData(Set<FruitData> fruits) {
+    this.fruits = fruits;
+  }
 }
