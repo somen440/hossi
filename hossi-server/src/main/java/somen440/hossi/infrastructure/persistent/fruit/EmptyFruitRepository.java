@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationScoped
-public class MockFruitRepository implements FruitRepository {
+public class EmptyFruitRepository implements FruitRepository {
 
     @Override
     public Fruit save(String name, String description) {
