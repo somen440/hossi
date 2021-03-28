@@ -1,7 +1,6 @@
 package somen440.hossi.domain.application.fruit;
 
 import somen440.hossi.di.RepositoryInjection;
-import somen440.hossi.domain.model.fruit.FruitRepository;
 import somen440.hossi.usecases.fruits.FruitData;
 import somen440.hossi.usecases.fruits.list.FruitListInputData;
 import somen440.hossi.usecases.fruits.list.FruitListOutputData;

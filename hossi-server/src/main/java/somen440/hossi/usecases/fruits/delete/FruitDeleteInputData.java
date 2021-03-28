@@ -1,6 +1,6 @@
 package somen440.hossi.usecases.fruits.delete;
 
-import somen440.hossi.usecases.core.InputData;
+import somen440.hossi.usecases.InputData;
 
 public class FruitDeleteInputData implements InputData<FruitDeleteOutputData> {
 

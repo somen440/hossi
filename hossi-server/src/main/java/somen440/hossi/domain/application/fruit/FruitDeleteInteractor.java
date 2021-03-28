@@ -1,7 +1,6 @@
 package somen440.hossi.domain.application.fruit;
 
 import somen440.hossi.di.RepositoryInjection;
-import somen440.hossi.domain.model.fruit.FruitRepository;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteOutputData;
 import somen440.hossi.usecases.fruits.delete.FruitDeleteUseCase;
