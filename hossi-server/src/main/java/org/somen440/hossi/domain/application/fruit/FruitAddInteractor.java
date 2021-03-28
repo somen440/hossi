@@ -1,12 +1,12 @@
 package org.somen440.hossi.domain.application.fruit;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 import org.somen440.hossi.usecases.fruits.FruitData;
 import org.somen440.hossi.usecases.fruits.add.FruitAddInputData;
 import org.somen440.hossi.usecases.fruits.add.FruitAddOutputData;
 import org.somen440.hossi.usecases.fruits.add.FruitAddUseCase;
-
-import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class FruitAddInteractor implements FruitAddUseCase {

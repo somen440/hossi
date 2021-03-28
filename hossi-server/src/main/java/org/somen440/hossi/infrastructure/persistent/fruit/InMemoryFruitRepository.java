@@ -1,13 +1,13 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
-import org.jboss.logging.Logger;
-import org.somen440.hossi.domain.model.fruit.Fruit;
-import org.somen440.hossi.domain.model.fruit.FruitRepository;
-
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Set;
+
+import org.jboss.logging.Logger;
+import org.somen440.hossi.domain.model.fruit.Fruit;
+import org.somen440.hossi.domain.model.fruit.FruitRepository;
 
 @ApplicationScoped
 public class InMemoryFruitRepository implements FruitRepository {

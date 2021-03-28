@@ -1,7 +1,7 @@
 package org.somen440.hossi.usecases.fruits.add;
 
-import org.somen440.hossi.usecases.fruits.FruitData;
 import org.somen440.hossi.usecases.OutputData;
+import org.somen440.hossi.usecases.fruits.FruitData;
 
 public class FruitAddOutputData implements OutputData {
 

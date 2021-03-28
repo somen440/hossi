@@ -1,10 +1,10 @@
 package org.somen440.hossi.resources;
 
+import javax.ws.rs.core.Application;
+
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.info.Info;
 import org.eclipse.microprofile.openapi.annotations.info.License;
-
-import javax.ws.rs.core.Application;
 
 @OpenAPIDefinition(
     info =

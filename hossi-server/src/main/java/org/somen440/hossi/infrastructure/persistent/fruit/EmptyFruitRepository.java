@@ -1,11 +1,11 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
-import org.somen440.hossi.domain.model.fruit.Fruit;
-import org.somen440.hossi.domain.model.fruit.FruitRepository;
-
 import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.somen440.hossi.domain.model.fruit.Fruit;
+import org.somen440.hossi.domain.model.fruit.FruitRepository;
 
 @ApplicationScoped
 public class EmptyFruitRepository implements FruitRepository {

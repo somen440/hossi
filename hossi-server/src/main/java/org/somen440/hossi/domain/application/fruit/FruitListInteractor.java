@@ -1,14 +1,14 @@
 package org.somen440.hossi.domain.application.fruit;
 
+import javax.enterprise.context.ApplicationScoped;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
+import org.somen440.hossi.domain.model.fruit.FruitRepository;
 import org.somen440.hossi.usecases.fruits.FruitData;
 import org.somen440.hossi.usecases.fruits.list.FruitListInputData;
 import org.somen440.hossi.usecases.fruits.list.FruitListOutputData;
 import org.somen440.hossi.usecases.fruits.list.FruitListUseCase;
-import org.somen440.hossi.domain.model.fruit.FruitRepository;
-
-import javax.enterprise.context.ApplicationScoped;
-import java.util.HashSet;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class FruitListInteractor implements FruitListUseCase {

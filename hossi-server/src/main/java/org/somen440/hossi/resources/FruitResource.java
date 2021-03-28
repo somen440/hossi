@@ -1,21 +1,21 @@
 package org.somen440.hossi.resources;
 
-import org.jboss.logging.Logger;
-import org.jboss.resteasy.annotations.jaxrs.PathParam;
-import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
-import org.somen440.hossi.usecases.fruits.add.FruitAddInputData;
-import org.somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
-import org.somen440.hossi.usecases.fruits.list.FruitListInputData;
-import org.somen440.hossi.resources.schemas.fruits.Fruit;
-import org.somen440.hossi.resources.schemas.fruits.FruitAddRequest;
-import org.somen440.hossi.resources.schemas.fruits.FruitAddResponse;
-import org.somen440.hossi.resources.schemas.fruits.FruitListResponse;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+
+import org.jboss.logging.Logger;
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
+import org.somen440.hossi.resources.schemas.fruits.Fruit;
+import org.somen440.hossi.resources.schemas.fruits.FruitAddRequest;
+import org.somen440.hossi.resources.schemas.fruits.FruitAddResponse;
+import org.somen440.hossi.resources.schemas.fruits.FruitListResponse;
+import org.somen440.hossi.usecases.fruits.add.FruitAddInputData;
+import org.somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
+import org.somen440.hossi.usecases.fruits.list.FruitListInputData;
 
 @Path("/fruits")
 @Consumes(MediaType.APPLICATION_JSON)
