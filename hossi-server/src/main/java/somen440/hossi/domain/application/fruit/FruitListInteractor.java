@@ -1,5 +1,6 @@
 package somen440.hossi.domain.application.fruit;
 
+import somen440.hossi.di.RepositoryInjection;
 import somen440.hossi.domain.model.fruit.FruitRepository;
 import somen440.hossi.usecases.fruits.FruitData;
 import somen440.hossi.usecases.fruits.list.FruitListInputData;
@@ -15,11 +16,11 @@ import java.util.stream.Collectors;
 public class FruitListInteractor implements FruitListUseCase {
 
     @Inject
-    FruitRepository fruitRepository;
+    RepositoryInjection repositoryInjection;
 
     @Override
     public FruitListOutputData handle(FruitListInputData inputData) {
-        final var fruits = fruitRepository.findAll().stream().map(
+        final var fruits = repositoryInjection.fruitRepository().findAll().stream().map(
                 fruit -> new FruitData(fruit.id, fruit.name, fruit.description)
         ).collect(Collectors.toList());
 

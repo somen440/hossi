@@ -1,10 +1,8 @@
 package somen440.hossi.resources;
 
 import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
+import somen440.hossi.di.RepositoryInjection;
 
 import javax.ws.rs.core.MediaType;
 
@@ -16,6 +14,11 @@ import static org.hamcrest.Matchers.containsString;
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FruitResourceTest {
+
+    @BeforeAll
+    public static void initAll() {
+        RepositoryInjection.useInmemory();
+    }
 
     @Test
     @Order(1)
