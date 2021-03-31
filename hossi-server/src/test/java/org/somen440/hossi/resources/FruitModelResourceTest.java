@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.containsString;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class FruitResourceTest {
+public class FruitModelResourceTest {
 
   @BeforeAll
   public static void initAll() {
