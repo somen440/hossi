@@ -3,6 +3,7 @@ package org.somen440.hossi.resources;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -26,21 +27,23 @@ public class FruitResource {
 
   @Inject FruitUseCaseDI di;
 
+  // todo: exception handler
+
   @GET
-  public FruitListResponse list() {
-    final var input = new FruitListInputData();
-    final var fruits =
-        di.listUseCase().handle(input).fruits.stream()
-            .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
-            .collect(Collectors.toList());
+  public FruitListResponse list() throws Exception {
+      final var input = new FruitListInputData();
+      final var fruits =
+          di.listUseCase().handle(input).fruits.stream()
+              .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
+              .collect(Collectors.toList());
 
-    LOG.info(String.format("list size=%d", fruits.size()));
+      LOG.info(String.format("list size=%d", fruits.size()));
 
-    return new FruitListResponse(new HashSet<>(fruits));
+      return new FruitListResponse(new HashSet<>(fruits));
   }
 
   @POST
-  public FruitAddResponse add(FruitAddRequest req) {
+  public FruitAddResponse add(FruitAddRequest req) throws Exception {
     final var input = new FruitAddInputData(req.name, req.description);
     final var output = di.addUseCase().handle(input);
 
@@ -52,7 +55,7 @@ public class FruitResource {
 
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam int id) {
+  public void delete(@PathParam int id) throws Exception {
     di.deleteUseCase().handle(new FruitDeleteInputData(id));
 
     LOG.info(String.format("delete id=%d", id));

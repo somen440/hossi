@@ -1,25 +1,23 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.FirestoreOptions;
 import org.jboss.logging.Logger;
-import org.somen440.hossi.config.Config;
 import org.somen440.hossi.domain.model.fruit.FruitModel;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 
 public class FirebaseFruitRepository implements FruitRepository {
 
-  final String COLLECTION_NAME = "fruits";
-
-  final private Firestore db;
-
   private static final Logger LOG = Logger.getLogger(InMemoryFruitRepository.class);
+
+  private static final String collectionName = "fruits";
+
+  private Firestore db;
+
+  public FirebaseFruitRepository() {}
 
   public FirebaseFruitRepository(Firestore db) {
     this.db = db;
@@ -39,7 +37,7 @@ public class FirebaseFruitRepository implements FruitRepository {
   public Set<FruitModel> findAll() throws Exception {
     Set<FruitModel> results = new HashSet<>();
 
-    var documents = db.collection(COLLECTION_NAME)
+    var documents = db.collection(collectionName)
         .get().get().getDocuments();
 
     for (var document : documents) {
