@@ -26,8 +26,10 @@ public class FruitResource {
 
   @Inject FruitUseCaseDI di;
 
+  // todo: exception handler
+
   @GET
-  public FruitListResponse list() {
+  public FruitListResponse list() throws Exception {
     final var input = new FruitListInputData();
     final var fruits =
         di.listUseCase().handle(input).fruits.stream()
@@ -40,11 +42,11 @@ public class FruitResource {
   }
 
   @POST
-  public FruitAddResponse add(FruitAddRequest req) {
+  public FruitAddResponse add(FruitAddRequest req) throws Exception {
     final var input = new FruitAddInputData(req.name, req.description);
     final var output = di.addUseCase().handle(input);
 
-    LOG.info(String.format("add id=%d", output.fruit.id));
+    LOG.info(String.format("add id=%s", output.fruit.id));
 
     return new FruitAddResponse(
         new Fruit(output.fruit.id, output.fruit.name, output.fruit.description));
@@ -52,9 +54,9 @@ public class FruitResource {
 
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam int id) {
+  public void delete(@PathParam String id) throws Exception {
     di.deleteUseCase().handle(new FruitDeleteInputData(id));
 
-    LOG.info(String.format("delete id=%d", id));
+    LOG.info(String.format("delete id=%s", id));
   }
 }

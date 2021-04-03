@@ -1,11 +1,13 @@
 package org.somen440.hossi.domain.model.fruit;
 
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public interface FruitRepository {
-  Fruit save(String name, String description);
 
-  void remove(int id);
+  FruitModel save(String name, String description) throws ExecutionException, InterruptedException, Exception;
 
-  Set<Fruit> findAll();
+  void remove(String id);
+
+  Set<FruitModel> findAll() throws ExecutionException, InterruptedException, Exception;
 }

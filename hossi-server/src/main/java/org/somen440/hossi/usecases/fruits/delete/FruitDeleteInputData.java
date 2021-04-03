@@ -4,11 +4,11 @@ import org.somen440.hossi.usecases.InputData;
 
 public class FruitDeleteInputData implements InputData<FruitDeleteOutputData> {
 
-  public int id;
+  public String id;
 
   public FruitDeleteInputData() {}
 
-  public FruitDeleteInputData(int id) {
+  public FruitDeleteInputData(String id) {
     this.id = id;
   }
 }

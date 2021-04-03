@@ -32,6 +32,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: 'github-pr-review'
         workdir: hossi-server
+        level: error
 
   build:
 
@@ -49,15 +50,14 @@ jobs:
       working-directory: hossi-server
       run: ./mvnw package -Pnative
 
-  notice:
-    if: always()
+  notice_success:
+    if: success()
     needs: [test, check_style, build]
 
     runs-on: ubuntu-latest
 
     steps:
     - name: Success CI
-      if: ${{ success() }}
       uses: tokorom/action-slack-incoming-webhook@master
       env:
         INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -74,8 +74,14 @@ jobs:
               "footer": "timestamp: ${{ github.event.pull_request.updated_at }}"
             }
           ]
+
+  notice_failure:
+    if: failure()
+    needs: [test, check_style, build]
+
+    runs-on: ubuntu-latest
+
     - name: Failure CI
-      if: ${{ failure() }}
       uses: tokorom/action-slack-incoming-webhook@master
       env:
         INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -20,7 +20,7 @@ public class FruitAddInteractor implements FruitAddUseCase {
   }
 
   @Override
-  public FruitAddOutputData handle(FruitAddInputData inputData) {
+  public FruitAddOutputData handle(FruitAddInputData inputData) throws Exception {
     final var fruit = fruitRepository.save(inputData.name, inputData.description);
 
     return new FruitAddOutputData(new FruitData(fruit.id, fruit.name, fruit.description));

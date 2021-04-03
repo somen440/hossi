@@ -4,22 +4,22 @@ import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.somen440.hossi.domain.model.fruit.Fruit;
+import org.somen440.hossi.domain.model.fruit.FruitModel;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 
 @ApplicationScoped
 public class EmptyFruitRepository implements FruitRepository {
 
   @Override
-  public Fruit save(String name, String description) {
-    return new Fruit(1, "mock", "mock");
+  public FruitModel save(String name, String description) {
+    return new FruitModel("1", "mock", "mock");
   }
 
   @Override
-  public void remove(int id) {}
+  public void remove(String id) {}
 
   @Override
-  public Set<Fruit> findAll() {
+  public Set<FruitModel> findAll() {
     return new HashSet<>();
   }
 }
