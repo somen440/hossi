@@ -13,7 +13,7 @@ import org.somen440.hossi.domain.model.fruit.FruitRepository;
 @ApplicationScoped
 public class FirebaseFruitRepository implements FruitRepository {
 
-  private static final Logger LOG = Logger.getLogger(InMemoryFruitRepository.class);
+  private static final Logger LOG = Logger.getLogger(FirebaseFruitRepository.class);
 
   private static final String collectionName = "fruits";
 

@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import java.io.IOException;
 
 import org.somen440.hossi.di.repository.fruits.FruitRepositoryDI;
+import org.somen440.hossi.di.usecases.UseCaseInjection;
+import org.somen440.hossi.domain.application.fruit.ErrorFruitListInteractor;
 import org.somen440.hossi.domain.application.fruit.FruitAddInteractor;
 import org.somen440.hossi.domain.application.fruit.FruitDeleteInteractor;
 import org.somen440.hossi.domain.application.fruit.FruitListInteractor;
@@ -18,12 +20,20 @@ public class FruitUseCaseDI {
 
   @Inject FruitRepositoryDI fruitRepositoryDi;
 
+  @Inject ErrorFruitListInteractor errorFruitListInteractor;
+
   public FruitAddUseCase addUseCase() throws IOException {
     return new FruitAddInteractor(fruitRepositoryDi.repository());
   }
 
   public FruitListUseCase listUseCase() throws IOException {
-    return new FruitListInteractor(fruitRepositoryDi.repository());
+    switch (UseCaseInjection.currentType()) {
+      case NORMAL:
+        return new FruitListInteractor(fruitRepositoryDi.repository());
+      case ERROR:
+        return errorFruitListInteractor;
+    }
+    throw new RuntimeException("未登録のユースケースタイプ");
   }
 
   public FruitDeleteUseCase deleteUseCase() throws IOException {

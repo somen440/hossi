@@ -6,6 +6,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.somen440.hossi.di.repository.RepositoryInjection;
+import org.somen440.hossi.di.usecases.UseCaseInjection;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
@@ -16,6 +17,7 @@ public class FruitResourceMockTest {
   @BeforeAll
   public static void initAll() {
     RepositoryInjection.useMock();
+    UseCaseInjection.useNormal();
   }
 
   @Test

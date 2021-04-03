@@ -5,6 +5,7 @@ import javax.ws.rs.core.MediaType;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.*;
 import org.somen440.hossi.di.repository.RepositoryInjection;
+import org.somen440.hossi.di.usecases.UseCaseInjection;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
@@ -18,6 +19,7 @@ public class FruitResourceTest {
   @BeforeAll
   public static void initAll() {
     RepositoryInjection.useInmemory();
+    UseCaseInjection.useNormal();
   }
 
   @Test
@@ -96,5 +98,19 @@ public class FruitResourceTest {
             containsInAnyOrder("Apple", "Pineapple"),
             "fruits.description",
             containsInAnyOrder("Winter fruit", "Tropical fruit"));
+  }
+
+  @Test
+  @Order(999)
+  public void testListWithRuntimeException() {
+    UseCaseInjection.useError();
+
+    given()
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .get("/fruits")
+        .then()
+        .statusCode(500)
+        .body(containsString("Internal Server Error"));
   }
 }
