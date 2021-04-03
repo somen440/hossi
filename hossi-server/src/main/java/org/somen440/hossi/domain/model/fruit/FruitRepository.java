@@ -5,9 +5,9 @@ import java.util.concurrent.ExecutionException;
 
 public interface FruitRepository {
 
-  FruitModel save(String name, String description);
+  FruitModel save(String name, String description) throws ExecutionException, InterruptedException, Exception;
 
-  void remove(int id);
+  void remove(String id);
 
   Set<FruitModel> findAll() throws ExecutionException, InterruptedException, Exception;
 }

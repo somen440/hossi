@@ -46,7 +46,7 @@ public class FruitResource {
     final var input = new FruitAddInputData(req.name, req.description);
     final var output = di.addUseCase().handle(input);
 
-    LOG.info(String.format("add id=%d", output.fruit.id));
+    LOG.info(String.format("add id=%s", output.fruit.id));
 
     return new FruitAddResponse(
         new Fruit(output.fruit.id, output.fruit.name, output.fruit.description));
@@ -54,9 +54,9 @@ public class FruitResource {
 
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam int id) throws Exception {
+  public void delete(@PathParam String id) throws Exception {
     di.deleteUseCase().handle(new FruitDeleteInputData(id));
 
-    LOG.info(String.format("delete id=%d", id));
+    LOG.info(String.format("delete id=%s", id));
   }
 }

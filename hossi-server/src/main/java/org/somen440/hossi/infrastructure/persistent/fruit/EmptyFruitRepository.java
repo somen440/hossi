@@ -12,11 +12,11 @@ public class EmptyFruitRepository implements FruitRepository {
 
   @Override
   public FruitModel save(String name, String description) {
-    return new FruitModel(1, "mock", "mock");
+    return new FruitModel("1", "mock", "mock");
   }
 
   @Override
-  public void remove(int id) {}
+  public void remove(String id) {}
 
   @Override
   public Set<FruitModel> findAll() {

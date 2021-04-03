@@ -18,14 +18,14 @@ public class InMemoryFruitRepository implements FruitRepository {
       Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
 
   public InMemoryFruitRepository() {
-    this.fruitModels.add(new FruitModel(1, "Apple", "Winter fruit"));
-    this.fruitModels.add(new FruitModel(2, "Pineapple", "Tropical fruit"));
+    this.fruitModels.add(new FruitModel("1", "Apple", "Winter fruit"));
+    this.fruitModels.add(new FruitModel("2", "Pineapple", "Tropical fruit"));
   }
 
   @Override
   public FruitModel save(String name, String description) {
     final var id = fruitModels.size() + 1;
-    final var fruit = new FruitModel(id, name, description);
+    final var fruit = new FruitModel(String.valueOf(id), name, description);
     this.fruitModels.add(fruit);
 
     LOG.debug(String.format("save 成功 id=%d name=%s description=%s", id, name, description));
@@ -34,10 +34,10 @@ public class InMemoryFruitRepository implements FruitRepository {
   }
 
   @Override
-  public void remove(int id) {
-    LOG.debug(String.format("remove 成功 id=%d", id));
+  public void remove(String id) {
+    LOG.debug(String.format("remove 成功 id=%s", id));
 
-    this.fruitModels.removeIf(fruitModel -> fruitModel.id == id);
+    this.fruitModels.removeIf(fruitModel -> fruitModel.id.equals(id));
   }
 
   @Override

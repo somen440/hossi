@@ -1,8 +1,8 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import com.google.cloud.firestore.Firestore;
@@ -26,13 +26,28 @@ public class FirebaseFruitRepository implements FruitRepository {
   }
 
   @Override
-  public FruitModel save(String name, String description) {
-    return null;
+  public FruitModel save(String name, String description) throws Exception {
+    var docRef = db.collection(collectionName);
+
+    var data = new HashMap<>();
+    data.put("name", name);
+    data.put("description", description);
+
+    var result = docRef.add(data);
+
+    LOG.debug(String.format("成功 id=%s", result.get().getId()));
+
+    return new FruitModel(
+        result.get().getId(),
+        name,
+        description
+    );
   }
 
   @Override
-  public void remove(int id) {
-
+  public void remove(String id) {
+    var docRef = db.collection(collectionName);
+    docRef.document(id).delete();
   }
 
   @Override
@@ -44,7 +59,7 @@ public class FirebaseFruitRepository implements FruitRepository {
 
     for (var document : documents) {
       var fruit = new FruitModel(
-          Objects.requireNonNull(document.getDouble("id")).intValue(),
+          document.getId(),
           document.getString("name"),
           document.getString("description")
       );
