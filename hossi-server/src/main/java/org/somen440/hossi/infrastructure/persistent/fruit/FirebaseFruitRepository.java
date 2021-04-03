@@ -1,5 +1,6 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -9,6 +10,7 @@ import org.jboss.logging.Logger;
 import org.somen440.hossi.domain.model.fruit.FruitModel;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 
+@ApplicationScoped
 public class FirebaseFruitRepository implements FruitRepository {
 
   private static final Logger LOG = Logger.getLogger(InMemoryFruitRepository.class);

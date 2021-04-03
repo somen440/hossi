@@ -9,7 +9,7 @@ import org.somen440.hossi.config.Config;
 
 public class FirestoreBuilder {
 
-  public Firestore build() throws IOException {
+  public static Firestore build() throws IOException {
     FirestoreOptions firestoreOptions =
     FirestoreOptions.getDefaultInstance().toBuilder()
         .setProjectId(Config.gcpProjectId)
