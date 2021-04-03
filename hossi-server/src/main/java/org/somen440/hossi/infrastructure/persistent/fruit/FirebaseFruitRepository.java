@@ -37,11 +37,7 @@ public class FirebaseFruitRepository implements FruitRepository {
 
     LOG.debug(String.format("成功 id=%s", result.get().getId()));
 
-    return new FruitModel(
-        result.get().getId(),
-        name,
-        description
-    );
+    return new FruitModel(result.get().getId(), name, description);
   }
 
   @Override
@@ -54,15 +50,12 @@ public class FirebaseFruitRepository implements FruitRepository {
   public Set<FruitModel> findAll() throws Exception {
     Set<FruitModel> results = new HashSet<>();
 
-    var documents = db.collection(collectionName)
-        .get().get().getDocuments();
+    var documents = db.collection(collectionName).get().get().getDocuments();
 
     for (var document : documents) {
-      var fruit = new FruitModel(
-          document.getId(),
-          document.getString("name"),
-          document.getString("description")
-      );
+      var fruit =
+          new FruitModel(
+              document.getId(), document.getString("name"), document.getString("description"));
       results.add(fruit);
     }
 

@@ -1,14 +1,18 @@
 package org.somen440.hossi.resources;
 
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
+import org.somen440.hossi.exception.InvalidArgumentException;
 import org.somen440.hossi.resources.schemas.fruits.Fruit;
 import org.somen440.hossi.resources.schemas.fruits.FruitAddRequest;
 import org.somen440.hossi.resources.schemas.fruits.FruitAddResponse;
@@ -26,7 +30,7 @@ public class FruitResource {
 
   @Inject FruitUseCaseDI di;
 
-  // todo: exception handler
+  @Inject Validator validator;
 
   @GET
   public FruitListResponse list() throws Exception {
@@ -43,6 +47,16 @@ public class FruitResource {
 
   @POST
   public FruitAddResponse add(FruitAddRequest req) throws Exception {
+    var violations = validator.validate(req);
+    if (!violations.isEmpty()) {
+      throw new InvalidArgumentException(violations.toString());
+    }
+
+    if (req.name.isEmpty() || req.description.isEmpty()) {
+      throw new InvalidArgumentException(
+          String.format("request empty name=%s description=%s", req.name, req.description));
+    }
+
     final var input = new FruitAddInputData(req.name, req.description);
     final var output = di.addUseCase().handle(input);
 

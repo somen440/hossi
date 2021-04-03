@@ -101,6 +101,19 @@ public class FruitResourceTest {
   }
 
   @Test
+  @Order(888)
+  public void testAddWithInvalidArgumentException() {
+    given()
+        .body("{\"name\":\"Pear\"}")
+        .header("Content-Type", MediaType.APPLICATION_JSON)
+        .when()
+        .post("/fruits")
+        .then()
+        .statusCode(400)
+        .body(containsString("Bad Request"));
+  }
+
+  @Test
   @Order(999)
   public void testListWithRuntimeException() {
     UseCaseInjection.useError();

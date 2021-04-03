@@ -11,7 +11,5 @@ public class FirebaseFruitRepositoryTest {
   private FirebaseFruitRepository repository;
 
   @BeforeAll
-  public static void initAll() {
-
-  }
+  public static void initAll() {}
 }

@@ -7,14 +7,14 @@ import javax.ws.rs.ext.Provider;
 import org.jboss.logging.Logger;
 
 @Provider
-public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException> {
+public class InvalidArgumentExceptionMapper implements ExceptionMapper<InvalidArgumentException> {
 
   private static final Logger LOG = Logger.getLogger(RuntimeExceptionMapper.class);
 
   @Override
-  public Response toResponse(RuntimeException e) {
-    LOG.error(e);
-    var status = Response.Status.INTERNAL_SERVER_ERROR;
+  public Response toResponse(InvalidArgumentException e) {
+    LOG.warn(e);
+    var status = Response.Status.BAD_REQUEST;
     return Response.status(status).entity(status.toString()).build();
   }
 }
