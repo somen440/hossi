@@ -1,12 +1,10 @@
 package org.somen440.hossi.resources;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
@@ -18,8 +16,10 @@ import org.somen440.hossi.resources.schemas.fruits.FruitAddRequest;
 import org.somen440.hossi.resources.schemas.fruits.FruitAddResponse;
 import org.somen440.hossi.resources.schemas.fruits.FruitListResponse;
 import org.somen440.hossi.usecases.fruits.add.FruitAddInputData;
+import org.somen440.hossi.usecases.fruits.add.FruitAddOutputData;
 import org.somen440.hossi.usecases.fruits.delete.FruitDeleteInputData;
 import org.somen440.hossi.usecases.fruits.list.FruitListInputData;
+import org.somen440.hossi.usecases.fruits.list.FruitListOutputData;
 
 @Path("/fruits")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -33,10 +33,17 @@ public class FruitResource {
   @Inject Validator validator;
 
   @GET
-  public FruitListResponse list() throws Exception {
+  public FruitListResponse list() {
     final var input = new FruitListInputData();
-    final var fruits =
-        di.listUseCase().handle(input).fruits.stream()
+    FruitListOutputData output;
+
+    try {
+      output = di.listUseCase().handle(input);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    final var fruits = output.fruits.stream()
             .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
             .collect(Collectors.toList());
 
@@ -46,19 +53,20 @@ public class FruitResource {
   }
 
   @POST
-  public FruitAddResponse add(FruitAddRequest req) throws Exception {
+  public FruitAddResponse add(FruitAddRequest req) throws InvalidArgumentException {
     var violations = validator.validate(req);
     if (!violations.isEmpty()) {
       throw new InvalidArgumentException(violations.toString());
     }
 
-    if (req.name.isEmpty() || req.description.isEmpty()) {
-      throw new InvalidArgumentException(
-          String.format("request empty name=%s description=%s", req.name, req.description));
-    }
-
     final var input = new FruitAddInputData(req.name, req.description);
-    final var output = di.addUseCase().handle(input);
+    FruitAddOutputData output;
+
+    try {
+      output = di.addUseCase().handle(input);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
 
     LOG.info(String.format("add id=%s", output.fruit.id));
 
@@ -68,8 +76,12 @@ public class FruitResource {
 
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam String id) throws Exception {
-    di.deleteUseCase().handle(new FruitDeleteInputData(id));
+  public void delete(@PathParam String id) {
+    try {
+      di.deleteUseCase().handle(new FruitDeleteInputData(id));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
 
     LOG.info(String.format("delete id=%s", id));
   }
