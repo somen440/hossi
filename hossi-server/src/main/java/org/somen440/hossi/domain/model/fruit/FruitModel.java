@@ -1,8 +1,6 @@
 package org.somen440.hossi.domain.model.fruit;
 
-/**
- * フルーツのドメインモデル
- */
+/** フルーツのドメインモデル. */
 public class FruitModel {
 
   public int id;
@@ -12,9 +10,9 @@ public class FruitModel {
   public FruitModel() {}
 
   /**
-   * @param id フルーツID
-   * @param name 名前
-   * @param description 詳細
+   * @param id フルーツID.
+   * @param name 名前.
+   * @param description 詳細.
    */
   public FruitModel(int id, String name, String description) {
     this.id = id;

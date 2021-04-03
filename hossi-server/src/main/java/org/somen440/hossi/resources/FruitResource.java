@@ -3,7 +3,6 @@ package org.somen440.hossi.resources;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -31,15 +30,15 @@ public class FruitResource {
 
   @GET
   public FruitListResponse list() throws Exception {
-      final var input = new FruitListInputData();
-      final var fruits =
-          di.listUseCase().handle(input).fruits.stream()
-              .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
-              .collect(Collectors.toList());
+    final var input = new FruitListInputData();
+    final var fruits =
+        di.listUseCase().handle(input).fruits.stream()
+            .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
+            .collect(Collectors.toList());
 
-      LOG.info(String.format("list size=%d", fruits.size()));
+    LOG.info(String.format("list size=%d", fruits.size()));
 
-      return new FruitListResponse(new HashSet<>(fruits));
+    return new FruitListResponse(new HashSet<>(fruits));
   }
 
   @POST
