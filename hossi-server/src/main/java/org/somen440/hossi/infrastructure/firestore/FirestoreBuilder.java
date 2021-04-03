@@ -11,10 +11,10 @@ public class FirestoreBuilder {
 
   public static Firestore build() throws IOException {
     FirestoreOptions firestoreOptions =
-    FirestoreOptions.getDefaultInstance().toBuilder()
-        .setProjectId(Config.gcpProjectId)
-        .setCredentials(GoogleCredentials.getApplicationDefault())
-        .build();
+        FirestoreOptions.getDefaultInstance().toBuilder()
+            .setProjectId(Config.gcpProjectId)
+            .setCredentials(GoogleCredentials.getApplicationDefault())
+            .build();
     return firestoreOptions.getService();
   }
 }

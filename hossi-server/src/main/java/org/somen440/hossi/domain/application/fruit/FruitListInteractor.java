@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.jboss.logging.Logger;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
-import org.somen440.hossi.infrastructure.persistent.fruit.InMemoryFruitRepository;
 import org.somen440.hossi.usecases.fruits.FruitData;
 import org.somen440.hossi.usecases.fruits.list.FruitListInputData;
 import org.somen440.hossi.usecases.fruits.list.FruitListOutputData;
@@ -14,8 +13,6 @@ import org.somen440.hossi.usecases.fruits.list.FruitListUseCase;
 
 @ApplicationScoped
 public class FruitListInteractor implements FruitListUseCase {
-
-  private static final Logger LOG = Logger.getLogger(InMemoryFruitRepository.class);
 
   FruitRepository fruitRepository;
 
