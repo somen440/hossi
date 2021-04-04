@@ -32,7 +32,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: 'github-pr-review'
         workdir: hossi-server
-        level: error
+        filter_mode: nofilter
+        # level: error
 
   build:
 
@@ -81,6 +82,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    steps:
     - name: Failure CI
       uses: tokorom/action-slack-incoming-webhook@master
       env:
