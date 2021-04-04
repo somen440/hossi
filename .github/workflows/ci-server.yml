@@ -36,7 +36,7 @@ jobs:
 
   notice_success:
     if: success()
-    needs: [test, check_style, build]
+    needs: [test, check_style]
 
     runs-on: ubuntu-latest
 
@@ -61,7 +61,7 @@ jobs:
 
   notice_failure:
     if: failure()
-    needs: [test, check_style, build]
+    needs: [test, check_style]
 
     runs-on: ubuntu-latest
 
