@@ -32,24 +32,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         reporter: 'github-pr-review'
         workdir: hossi-server
-        filter_mode: nofilter
-        # level: error
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Graalvm
-      id: setup-graalvm
-      uses: DeLaGuardo/setup-graalvm@4.0
-      with:
-        graalvm: '21.0.0.2'
-        java: 'java11'
-    - name: build
-      working-directory: hossi-server
-      run: ./mvnw package -Pnative
+        level: error
 
   notice_success:
     if: success()
