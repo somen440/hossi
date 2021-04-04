@@ -1,15 +1,14 @@
 package org.somen440.hossi.resources;
 
-import javax.ws.rs.core.MediaType;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
 
 import io.quarkus.test.junit.QuarkusTest;
+import javax.ws.rs.core.MediaType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.somen440.hossi.di.repository.RepositoryInjection;
 import org.somen440.hossi.di.usecases.UseCaseInjection;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 public class FruitResourceMockTest {

@@ -1,10 +1,8 @@
 package org.somen440.hossi.domain.application.fruit;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import java.util.stream.Collectors;
-
-import org.jboss.logging.Logger;
+import javax.enterprise.context.ApplicationScoped;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 import org.somen440.hossi.usecases.fruits.FruitData;
 import org.somen440.hossi.usecases.fruits.list.FruitListInputData;

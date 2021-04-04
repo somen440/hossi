@@ -1,10 +1,8 @@
 package org.somen440.hossi.di.usecases.fruits;
 
+import java.io.IOException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
-import java.io.IOException;
-
 import org.somen440.hossi.di.repository.fruits.FruitRepositoryDI;
 import org.somen440.hossi.di.usecases.UseCaseInjection;
 import org.somen440.hossi.domain.application.fruit.ErrorFruitListInteractor;

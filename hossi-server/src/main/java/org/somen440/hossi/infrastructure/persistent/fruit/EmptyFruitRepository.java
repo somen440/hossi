@@ -1,9 +1,8 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import java.util.Set;
-
+import javax.enterprise.context.ApplicationScoped;
 import org.somen440.hossi.domain.model.fruit.FruitModel;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 

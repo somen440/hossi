@@ -1,12 +1,16 @@
 package org.somen440.hossi.resources;
 
-import javax.inject.Inject;
-import javax.validation.Validator;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.HashSet;
 import java.util.stream.Collectors;
-
+import javax.inject.Inject;
+import javax.validation.Validator;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
@@ -43,7 +47,8 @@ public class FruitResource {
       throw new RuntimeException(e);
     }
 
-    final var fruits = output.fruits.stream()
+    final var fruits =
+        output.fruits.stream()
             .map(fruitData -> new Fruit(fruitData.id, fruitData.name, fruitData.description))
             .collect(Collectors.toList());
 

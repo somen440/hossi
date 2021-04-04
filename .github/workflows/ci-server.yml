@@ -34,25 +34,9 @@ jobs:
         workdir: hossi-server
         level: error
 
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup Graalvm
-      id: setup-graalvm
-      uses: DeLaGuardo/setup-graalvm@4.0
-      with:
-        graalvm: '21.0.0.2'
-        java: 'java11'
-    - name: build
-      working-directory: hossi-server
-      run: ./mvnw package -Pnative
-
   notice_success:
     if: success()
-    needs: [test, check_style, build]
+    needs: [test, check_style]
 
     runs-on: ubuntu-latest
 
@@ -77,10 +61,11 @@ jobs:
 
   notice_failure:
     if: failure()
-    needs: [test, check_style, build]
+    needs: [test, check_style]
 
     runs-on: ubuntu-latest
 
+    steps:
     - name: Failure CI
       uses: tokorom/action-slack-incoming-webhook@master
       env:

@@ -1,11 +1,10 @@
 package org.somen440.hossi.infrastructure.persistent.fruit;
 
-import javax.enterprise.context.ApplicationScoped;
+import com.google.cloud.firestore.Firestore;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.google.cloud.firestore.Firestore;
+import javax.enterprise.context.ApplicationScoped;
 import org.jboss.logging.Logger;
 import org.somen440.hossi.domain.model.fruit.FruitModel;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;

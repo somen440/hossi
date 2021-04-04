@@ -1,10 +1,8 @@
 package org.somen440.hossi.di.repository.fruits;
 
+import java.io.IOException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
-import java.io.IOException;
-
 import org.somen440.hossi.di.repository.RepositoryInjection;
 import org.somen440.hossi.domain.model.fruit.FruitRepository;
 import org.somen440.hossi.infrastructure.firestore.FirestoreBuilder;
