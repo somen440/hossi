@@ -1,7 +1,7 @@
 package org.somen440.hossi.resources.schemas.fruits;
 
-import javax.validation.constraints.NotNull;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 public class FruitListResponse {
 

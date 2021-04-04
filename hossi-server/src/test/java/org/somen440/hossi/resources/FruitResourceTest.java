@@ -1,16 +1,19 @@
 package org.somen440.hossi.resources;
 
-import javax.ws.rs.core.MediaType;
-
-import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.*;
-import org.somen440.hossi.di.repository.RepositoryInjection;
-import org.somen440.hossi.di.usecases.UseCaseInjection;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
+
+import io.quarkus.test.junit.QuarkusTest;
+import javax.ws.rs.core.MediaType;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.somen440.hossi.di.repository.RepositoryInjection;
+import org.somen440.hossi.di.usecases.UseCaseInjection;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

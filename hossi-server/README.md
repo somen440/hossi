@@ -22,8 +22,8 @@ The application can be packaged using:
 ./mvnw package
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory. Be aware that it’s not an _über-jar_ as
-the dependencies are copied into the `target/quarkus-app/lib/` directory.
+It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory. Be aware that it’s
+not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
 
 If you want to build an _über-jar_, execute the following command:
 
@@ -41,7 +41,8 @@ You can create a native executable using:
 ./mvnw package -Pnative
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+Or, if you don't have GraalVM installed, you can run the native executable build in a container
+using:
 
 ```shell script
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
@@ -49,12 +50,14 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 
 You can then execute your native executable with: `./target/hossi-server-1.0.0-SNAPSHOT-runner`
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html
+If you want to learn more about building native executables, please
+consult https://quarkus.io/guides/maven-tooling.html
 .
 
 ## Related guides
 
-- RESTEasy JAX-RS ([guide](https://quarkus.io/guides/rest-json)): REST endpoint framework implementing JAX-RS and more
+- RESTEasy JAX-RS ([guide](https://quarkus.io/guides/rest-json)): REST endpoint framework
+  implementing JAX-RS and more
 
 ## Provided examples
 
@@ -66,7 +69,7 @@ REST is easy peasy with this Hello World RESTEasy resource.
 
 ### RESTEasy JSON serialisation using Jackson
 
-This example demonstrate RESTEasy JSON serialisation by letting you list, add and remove quark types from a list.
-Quarked!
+This example demonstrate RESTEasy JSON serialisation by letting you list, add and remove quark types
+from a list. Quarked!
 
 [Related guide section...](https://quarkus.io/guides/rest-json#creating-your-first-json-rest-service)

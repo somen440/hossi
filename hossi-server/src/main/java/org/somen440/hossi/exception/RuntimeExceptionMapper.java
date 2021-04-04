@@ -3,7 +3,6 @@ package org.somen440.hossi.exception;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-
 import org.jboss.logging.Logger;
 
 @Provider
