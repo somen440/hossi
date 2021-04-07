@@ -15,7 +15,7 @@ public class FruitRepositoryDI {
   @Inject EmptyFruitRepository emptyFruitRepository;
 
   /**
-   * 設定に応じて FruitRepository を返す
+   * 設定に応じて FruitRepository を返す.
    *
    * @return FruitRepository impl
    */
