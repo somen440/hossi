@@ -5,11 +5,7 @@ import javax.inject.Singleton;
 @Singleton
 public class RepositoryInjection {
 
-  private static RepositoryType type = RepositoryType.FIREBASE;
-
-  public static void useFirebase() {
-    type = RepositoryType.FIREBASE;
-  }
+  private static RepositoryType type = RepositoryType.INMEMORY;
 
   public static void useInmemory() {
     type = RepositoryType.INMEMORY;

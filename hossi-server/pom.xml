@@ -60,17 +60,6 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
-    <!--  https://mvnrepository.com/artifact/io.quarkiverse.googlecloudservices/quarkus-google-cloud-firestore  -->
-    <dependency>
-      <groupId>io.quarkiverse.googlecloudservices</groupId>
-      <artifactId>quarkus-google-cloud-pubsub</artifactId>
-      <version>0.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkiverse.googlecloudservices</groupId>
-      <artifactId>quarkus-google-cloud-firestore</artifactId>
-      <version>0.5.0</version>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
