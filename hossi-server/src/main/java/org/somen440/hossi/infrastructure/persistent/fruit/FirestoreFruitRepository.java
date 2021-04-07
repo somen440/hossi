@@ -4,6 +4,7 @@ import com.google.cloud.firestore.Firestore;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -21,19 +22,19 @@ public class FirestoreFruitRepository implements FruitRepository {
   @Inject Firestore firestore;
 
   @Override
-  public FruitModel save(String name, String description)
-      throws ExecutionException, InterruptedException {
+  public FruitModel save(String name, String description) {
     var collectionRef = firestore.collection(collectionName);
 
     var data = new HashMap<>();
     data.put("name", name);
     data.put("description", description);
 
-    var result = collectionRef.add(data);
+    var id = UUID.randomUUID().toString();
+    collectionRef.document(id).set(data);
 
-    LOG.debug(String.format("成功 id=%s", result.get().getId()));
+    LOG.debug(String.format("成功 id=%s", id));
 
-    return new FruitModel(result.get().getId(), name, description);
+    return new FruitModel(id, name, description);
   }
 
   @Override
