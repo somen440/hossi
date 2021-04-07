@@ -54,7 +54,7 @@ jobs:
         java: 'java11'
     - name: build
       working-directory: hossi-server
-      run: ./mvnw package -Pnative
+      run: ./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
 
   notice_success:
     if: success()

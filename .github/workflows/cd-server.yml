@@ -38,7 +38,7 @@ jobs:
         java: 'java11'
     - name: build
       working-directory: hossi-server
-      run: ./mvnw package -Pnative
+      run: ./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
     - name: Build a docker image
       working-directory: hossi-server
       run: docker build -f src/main/docker/Dockerfile.native -t $IMAGE .
