@@ -30,9 +30,18 @@ jobs:
         export_default_credentials: true
     - name: Configure docker to use the gcloud cli
       run: gcloud auth configure-docker --quiet
+    - name: Setup Graalvm
+      id: setup-graalvm
+      uses: DeLaGuardo/setup-graalvm@4.0
+      with:
+        graalvm: '21.0.0.2'
+        java: 'java11'
+    - name: build
+      working-directory: hossi-server
+      run: ./mvnw package -Pnative
     - name: Build a docker image
       working-directory: hossi-server
-      run: docker build -f src/main/docker/Dockerfile.multistage -t $IMAGE .
+      run: docker build -f src/main/docker/Dockerfile.native -t $IMAGE .
     - name: Push the docker image to Container Registry
       run: docker push $IMAGE
     - name: Deploy to Cloud Run
