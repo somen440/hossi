@@ -14,7 +14,11 @@ public class FruitRepositoryDI {
 
   @Inject EmptyFruitRepository emptyFruitRepository;
 
-  /** @return FruitRepository impl */
+  /**
+   * 設定に応じて FruitRepository を返す
+   *
+   * @return FruitRepository impl
+   */
   public FruitRepository repository() {
     switch (RepositoryInjection.currentType()) {
       case INMEMORY:
