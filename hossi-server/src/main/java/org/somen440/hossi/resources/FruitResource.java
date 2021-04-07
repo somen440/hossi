@@ -15,6 +15,7 @@ import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
 import org.somen440.hossi.exception.InvalidArgumentException;
+import org.somen440.hossi.exception.RuntimeException;
 import org.somen440.hossi.resources.schemas.fruits.Fruit;
 import org.somen440.hossi.resources.schemas.fruits.FruitAddRequest;
 import org.somen440.hossi.resources.schemas.fruits.FruitAddResponse;
@@ -37,14 +38,14 @@ public class FruitResource {
   @Inject Validator validator;
 
   @GET
-  public FruitListResponse list() {
+  public FruitListResponse list() throws RuntimeException {
     final var input = new FruitListInputData();
     FruitListOutputData output;
 
     try {
       output = di.listUseCase().handle(input);
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e.getMessage());
     }
 
     final var fruits =
@@ -58,7 +59,8 @@ public class FruitResource {
   }
 
   @POST
-  public FruitAddResponse add(FruitAddRequest req) throws InvalidArgumentException {
+  public FruitAddResponse add(FruitAddRequest req)
+      throws InvalidArgumentException, RuntimeException {
     var violations = validator.validate(req);
     if (!violations.isEmpty()) {
       throw new InvalidArgumentException(violations.toString());
@@ -70,7 +72,7 @@ public class FruitResource {
     try {
       output = di.addUseCase().handle(input);
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e.getMessage());
     }
 
     LOG.info(String.format("add id=%s", output.fruit.id));
@@ -81,11 +83,11 @@ public class FruitResource {
 
   @DELETE
   @Path("/{id}")
-  public void delete(@PathParam String id) {
+  public void delete(@PathParam String id) throws RuntimeException {
     try {
       di.deleteUseCase().handle(new FruitDeleteInputData(id));
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e.getMessage());
     }
 
     LOG.info(String.format("delete id=%s", id));
