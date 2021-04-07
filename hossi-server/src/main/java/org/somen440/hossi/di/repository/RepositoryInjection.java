@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 @Singleton
 public class RepositoryInjection {
 
-  private static RepositoryType type = RepositoryType.INMEMORY;
+  private static RepositoryType type = RepositoryType.FIRESTORE;
 
   public static void useInmemory() {
     type = RepositoryType.INMEMORY;
@@ -14,6 +14,8 @@ public class RepositoryInjection {
   public static void useMock() {
     type = RepositoryType.MOCK;
   }
+
+  public static void useFirestore() { type = RepositoryType.FIRESTORE; }
 
   public static RepositoryType currentType() {
     return type;
