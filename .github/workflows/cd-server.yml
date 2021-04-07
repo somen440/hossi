@@ -29,7 +29,7 @@ jobs:
         java: 'java11'
     - name: build
       working-directory: hossi-server
-      run: ./mvnw package -Pnative
+      run: ./mvnw package -Pnative -X
     # - name: Setup gcloud
     #   uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
     #   with:
