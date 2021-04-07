@@ -14,6 +14,7 @@ public class FruitRepositoryDI {
 
   @Inject EmptyFruitRepository emptyFruitRepository;
 
+  /** @return FruitRepository impl */
   public FruitRepository repository() {
     switch (RepositoryInjection.currentType()) {
       case INMEMORY:

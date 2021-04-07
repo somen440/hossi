@@ -35,6 +35,7 @@ jobs:
         reporter: 'github-pr-review'
         workdir: hossi-server
         level: error
+        fail_on_error: true
 
   notice_success:
     if: success()

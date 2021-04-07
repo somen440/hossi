@@ -59,7 +59,8 @@ public class FruitResource {
   }
 
   @POST
-  public FruitAddResponse add(FruitAddRequest req) throws InvalidArgumentException, RuntimeException {
+  public FruitAddResponse add(FruitAddRequest req)
+      throws InvalidArgumentException, RuntimeException {
     var violations = validator.validate(req);
     if (!violations.isEmpty()) {
       throw new InvalidArgumentException(violations.toString());
