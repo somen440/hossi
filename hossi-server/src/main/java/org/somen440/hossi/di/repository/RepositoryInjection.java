@@ -15,7 +15,9 @@ public class RepositoryInjection {
     type = RepositoryType.MOCK;
   }
 
-  public static void useFirestore() { type = RepositoryType.FIRESTORE; }
+  public static void useFirestore() {
+    type = RepositoryType.FIRESTORE;
+  }
 
   public static RepositoryType currentType() {
     return type;
