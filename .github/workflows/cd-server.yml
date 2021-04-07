@@ -30,29 +30,26 @@ jobs:
         export_default_credentials: true
     - name: Configure docker to use the gcloud cli
       run: gcloud auth configure-docker --quiet
-    - name: Setup Graalvm
-      id: setup-graalvm
-      uses: DeLaGuardo/setup-graalvm@4.0
-      with:
-        graalvm: '21.0.0.2'
-        java: 'java11'
-    - name: build
-      working-directory: hossi-server
-      run: ./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
     - name: Build a docker image
       working-directory: hossi-server
-      run: docker build -f src/main/docker/Dockerfile.native -t $IMAGE .
+      run: |
+        docker build \
+          -f src/main/docker/Dockerfile.multistage \
+          -t $IMAGE \
+          --build-arg GCP_PROJECT_ID=${GCP_PROJECT_ID} \
+          .
     - name: Push the docker image to Container Registry
       run: docker push $IMAGE
     - name: Deploy to Cloud Run
       run: |
-          gcloud run deploy $SERVICE_NAME \
-            --image $IMAGE \
-            --project $GCP_PROJECT_ID \
-            --region $GCP_REGION \
-            --platform=managed \
-            --allow-unauthenticated \
-            --quiet
+        gcloud run deploy $SERVICE_NAME \
+          --image $IMAGE \
+          --project $GCP_PROJECT_ID \
+          --region $GCP_REGION \
+          --platform=managed \
+          --allow-unauthenticated \
+          --set-env-vars=GCP_PROJECT_ID=${GCP_PROJECT_ID} \
+          --quiet
 
   notice_success:
     if: success()
