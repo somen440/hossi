@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - hossi-server/**
+    paths:
+      - hossi-server/**
   pull_request:
     branches:
       - main
