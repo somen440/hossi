@@ -1,6 +1,11 @@
 name: Server CI
 
 on:
+  push:
+    branches:
+      - main
+    # paths:
+    #   - hossi-server/**
   pull_request:
     branches:
       - main
