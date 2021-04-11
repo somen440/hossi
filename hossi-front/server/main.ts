@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import register from '@react-ssr/express/register';
+import { config, toMaskConfig } from './config/config';
 
 const app = express();
 
@@ -11,7 +12,8 @@ const app = express();
     res.render('index', { user });
   });
 
-  app.listen(3000, () => {
-    console.log('> Ready on http://localhost:3000');
+  app.listen(config.port, () => {
+    console.log(`${toMaskConfig(config)}`);
+    console.log(`> Ready on http://localhost:${config.port}`);
   });
 })();
