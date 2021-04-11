@@ -1,11 +1,11 @@
 name: Front CD
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - hossi-front/**
+  push
+  # branches:
+  #   - main
+  # paths:
+  #   - hossi-front/**
 
 env:
   SERVICE_NAME: hossi-front
