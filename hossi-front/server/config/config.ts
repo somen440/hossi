@@ -20,5 +20,5 @@ export const config: Config = {
 }
 
 export function toMaskConfig(config: Config): string {
-  return `port=${config.port} env=${config.env} debuggable=${config.debuggable}`
+  return `port=${config.port} env=${config.env} debuggable=${String(config.debuggable)}`
 }
