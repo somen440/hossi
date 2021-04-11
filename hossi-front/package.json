@@ -17,6 +17,8 @@
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.2.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.9.5"
   },
@@ -25,8 +27,8 @@
     "build": "tsc --project tsconfig.server.json",
     "start": "node dist/main.js",
     "start:prod": "NODE_ENV=production node dist/main.js",
-		"check-types": "tsc --noEmit",
-		"lint": "eslint server/**/*.ts"
+    "check-types": "tsc --noEmit",
+    "lint": "eslint server/**/*.ts"
   },
   "eslintConfig": {
     "extends": [
