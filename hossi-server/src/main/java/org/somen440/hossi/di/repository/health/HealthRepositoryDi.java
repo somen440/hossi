@@ -8,7 +8,7 @@ import org.somen440.hossi.domain.model.health.HealthRepository;
 import org.somen440.hossi.infrastructure.persistent.health.FirestoreHealthRepository;
 
 @ApplicationScoped
-public class HealthRepositoryDI {
+public class HealthRepositoryDi {
 
   @Inject FirestoreHealthRepository firestoreHealthRepository;
 

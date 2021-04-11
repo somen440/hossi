@@ -7,7 +7,6 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import io.quarkus.test.junit.QuarkusTest;
 import javax.ws.rs.core.MediaType;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
@@ -23,10 +22,6 @@ public class HealthResourceTest {
         .get("/health")
         .then()
         .statusCode(200)
-        .body(
-            "results.size()",
-            is(1),
-            "results.service",
-            containsInAnyOrder("firestore"));
+        .body("results.size()", is(1), "results.service", containsInAnyOrder("firestore"));
   }
 }

@@ -8,7 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import org.somen440.hossi.di.usecases.health.HealthUseCaseDI;
+import org.somen440.hossi.di.usecases.health.HealthUseCaseDi;
 import org.somen440.hossi.exception.RuntimeException;
 import org.somen440.hossi.resources.schemas.health.Health;
 import org.somen440.hossi.resources.schemas.health.HealthCheckResponse;
@@ -19,8 +19,15 @@ import org.somen440.hossi.usecases.health.check.HealthCheckInputData;
 @Produces(MediaType.APPLICATION_JSON)
 public class HealthResource {
 
-  @Inject HealthUseCaseDI di;
+  @Inject
+  HealthUseCaseDi di;
 
+  /**
+   * ヘルスチェックを行う
+   *
+   * @return レスポンス（外部サービスとの接続結果）
+   * @throws RuntimeException 500
+   */
   @GET
   public HealthCheckResponse check() throws RuntimeException {
     Set<Health> results;

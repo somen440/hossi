@@ -9,7 +9,7 @@ import org.somen440.hossi.infrastructure.persistent.fruit.FirestoreFruitReposito
 import org.somen440.hossi.infrastructure.persistent.fruit.InMemoryFruitRepository;
 
 @ApplicationScoped
-public class FruitRepositoryDI {
+public class FruitRepositoryDi {
 
   @Inject InMemoryFruitRepository inMemoryFruitRepository;
 
