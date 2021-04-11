@@ -23,7 +23,7 @@ public class HealthResource {
   HealthUseCaseDi di;
 
   /**
-   * ヘルスチェックを行う
+   * ヘルスチェックを行う.
    *
    * @return レスポンス（外部サービスとの接続結果）
    * @throws RuntimeException 500

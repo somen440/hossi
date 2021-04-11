@@ -12,6 +12,11 @@ public class HealthRepositoryDi {
 
   @Inject FirestoreHealthRepository firestoreHealthRepository;
 
+  /**
+   * HealthRepository を実装した配列を返す.
+   *
+   * @return Set<HealthRepository>
+   */
   public Set<HealthRepository> repositories() {
     var results = new HashSet<HealthRepository>();
 
