@@ -62,7 +62,13 @@ jobs:
           java: "java11"
       - name: build
         working-directory: hossi-server
-        run: ./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
+        run: |
+          touch $GOOGLE_APPLICATION_CREDENTIALS &&\
+          echo $GOOGLE_CREDENTIALS >> $GOOGLE_APPLICATION_CREDENTIALS &&\
+          ./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
   notice_success:
     if: success()
