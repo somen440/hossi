@@ -25,14 +25,15 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Set up Credentials
-        working-directory: hossi-server
-        run: |
-          touch ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          echo ${{ secrets.GOOGLE_CREDENTIALS }} >> ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: Test
         working-directory: hossi-server
-        run: ./mvnw test
+        run: |
+          touch $GOOGLE_APPLICATION_CREDENTIALS &&\
+          echo $GOOGLE_CREDENTIALS >> $GOOGLE_APPLICATION_CREDENTIALS &&\
+          ./mvnw test
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
   check_style:
     runs-on: ubuntu-latest
