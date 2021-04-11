@@ -1,11 +1,11 @@
 name: Server CD
 
 on:
-  push
-  # branches:
-  #   - main
-  # paths:
-  #   - hossi-server/**
+  push:
+    branches:
+      - main
+    paths:
+      - hossi-server/**
 
 env:
   SERVICE_NAME: hossi-server
