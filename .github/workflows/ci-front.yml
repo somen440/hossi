@@ -26,8 +26,11 @@ jobs:
         with:
           node-version: "14.16.1"
       - run: yarn
+        working-directory: hossi-front
       - run: yarn lint
+        working-directory: hossi-front
       - run: yarn build
+        working-directory: hossi-front
 
   notice_success:
     if: success()
