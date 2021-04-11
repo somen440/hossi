@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
-import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDI;
+import org.somen440.hossi.di.usecases.fruits.FruitUseCaseDi;
 import org.somen440.hossi.exception.InvalidArgumentException;
 import org.somen440.hossi.exception.RuntimeException;
 import org.somen440.hossi.resources.schemas.fruits.Fruit;
@@ -33,7 +33,8 @@ public class FruitResource {
 
   private static final Logger LOG = Logger.getLogger(FruitResource.class);
 
-  @Inject FruitUseCaseDI di;
+  @Inject
+  FruitUseCaseDi di;
 
   @Inject Validator validator;
 

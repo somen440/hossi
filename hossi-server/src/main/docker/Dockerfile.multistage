@@ -9,7 +9,7 @@ USER root
 RUN chown -R quarkus /usr/src/app
 USER quarkus
 ENV GCP_PROJECT_ID ${GCP_PROJECT_ID}
-RUN mvn -f /usr/src/app/pom.xml -Pnative clean package
+RUN mvn -f /usr/src/app/pom.xml -Pnative clean package -Dmaven.test.skip=true
 
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi8/ubi-minimal
