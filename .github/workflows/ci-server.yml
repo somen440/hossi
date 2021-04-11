@@ -63,12 +63,10 @@ jobs:
       - name: build
         working-directory: hossi-server
         run: |
-          touch $GOOGLE_APPLICATION_CREDENTIALS &&\
-          echo $GOOGLE_CREDENTIALS >> $GOOGLE_APPLICATION_CREDENTIALS &&\
-          ./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          ./mvnw package -Pnative \
+            -Dquarkus.native.container-build=true \
+            -Dquarkus.native.container-runtime=docker \
+            -Dmaven.test.skip=true
 
   notice_success:
     if: success()
